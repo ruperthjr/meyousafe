@@ -1,10 +1,10 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
-import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+import { ThemeProvider as StyledThemeProvider, DefaultTheme } from 'styled-components';
 import * as ThemeModule from '../styles/theme';
-export type Theme = Record<string, unknown>;
+export type Theme = DefaultTheme;
 
-const lightTheme: Theme = (ThemeModule as any).lightTheme ?? (ThemeModule as any).light ?? (ThemeModule as any).themes?.light ?? (ThemeModule as any).default?.light;
-const darkTheme: Theme = (ThemeModule as any).darkTheme ?? (ThemeModule as any).dark ?? (ThemeModule as any).themes?.dark ?? (ThemeModule as any).default?.dark ?? lightTheme;
+const lightTheme: Theme = ((ThemeModule as any).lightTheme ?? (ThemeModule as any).light ?? (ThemeModule as any).themes?.light ?? (ThemeModule as any).default?.light) as Theme;
+const darkTheme: Theme = ((ThemeModule as any).darkTheme ?? (ThemeModule as any).dark ?? (ThemeModule as any).themes?.dark ?? (ThemeModule as any).default?.dark ?? lightTheme) as Theme;
 
 export type ThemeMode = 'light' | 'dark';
 
