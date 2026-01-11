@@ -13,7 +13,14 @@ const float = keyframes`
   }
 `;
 
-// removed unused shimmer animation to avoid unused variable warning
+const shimmer = keyframes`
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+`;
 
 export const HeaderContainer = styled.header<{ $isScrolled: boolean }>`
   position: fixed;
@@ -49,35 +56,14 @@ export const HeaderBubbles = styled.div`
   bottom: 0;
   overflow: hidden;
   pointer-events: none;
+  opacity: 0.6;
 
-  &::before,
-  &::after {
-    content: '';
+  img {
     position: absolute;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle at center,
-      rgba(255, 255, 255, 0.2) 0%,
-      rgba(255, 255, 255, 0.05) 50%,
-      transparent 100%
-    );
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     animation: ${float} 8s ease-in-out infinite;
-  }
-
-  &::before {
-    width: 150px;
-    height: 150px;
-    top: -50px;
-    right: 10%;
-    animation-delay: 0s;
-  }
-
-  &::after {
-    width: 100px;
-    height: 100px;
-    top: -30px;
-    right: 30%;
-    animation-delay: 2s;
   }
 `;
 
@@ -112,13 +98,39 @@ export const LogoIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 52px;
+  height: 52px;
   background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.9) 100%);
-  border-radius: 12px;
-  color: #6366f1;
+  border-radius: 14px;
+  padding: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(99, 102, 241, 0.2),
+      transparent
+    );
+    animation: ${shimmer} 3s infinite;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+  }
 
   ${Logo}:hover & {
     box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);

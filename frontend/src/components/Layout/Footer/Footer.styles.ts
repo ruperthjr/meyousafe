@@ -42,36 +42,14 @@ export const FooterBubbles = styled.div`
   bottom: 0;
   overflow: hidden;
   pointer-events: none;
-  opacity: 0.4;
+  opacity: 0.3;
 
-  &::before,
-  &::after {
-    content: '';
+  img {
     position: absolute;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle at center,
-      rgba(139, 92, 246, 0.3) 0%,
-      rgba(99, 102, 241, 0.15) 50%,
-      transparent 100%
-    );
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     animation: ${float} 12s ease-in-out infinite;
-  }
-
-  &::before {
-    width: 250px;
-    height: 250px;
-    bottom: -100px;
-    left: -50px;
-    animation-delay: 0s;
-  }
-
-  &::after {
-    width: 180px;
-    height: 180px;
-    bottom: -50px;
-    right: 10%;
-    animation-delay: 4s;
   }
 `;
 
@@ -129,15 +107,22 @@ export const LogoIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 14px;
-  color: #ffffff;
+  border-radius: 16px;
+  padding: 10px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
 
   ${FooterLogo}:hover & {
     box-shadow: 0 12px 32px rgba(139, 92, 246, 0.4);
@@ -188,75 +173,86 @@ export const FooterLinks = styled.div`
 `;
 
 export const FooterLink = styled(Link)`
-font-size: 0.9375rem;
-color: rgba(255, 255, 255, 0.7);
-text-decoration: none;
-transition: all 0.3s ease;
-width: fit-content;
-position: relative;
-padding-left: 0;
-&::before {
-content: '';
-position: absolute;
-left: 0;
-bottom: 0;
-width: 0;
-height: 2px;
-background: linear-gradient(90deg, #8b5cf6 0%, #6366f1 100%);
-transition: width 0.3s ease;
-}
-&:hover {
-color: #ffffff;
-padding-left: 12px;
-&::before {
-  width: calc(100% - 12px);
-}
-}
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  width: fit-content;
+  position: relative;
+  padding-left: 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #8b5cf6 0%, #6366f1 100%);
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    color: #ffffff;
+    padding-left: 12px;
+
+    &::before {
+      width: calc(100% - 12px);
+    }
+  }
 `;
+
 export const ContactItem = styled.div`
   display: flex;
   align-items: center;
   gap: 0.75rem;
 `;
+
 export const ContactIcon = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-width: 36px;
-height: 36px;
-background: rgba(139, 92, 246, 0.2);
-backdrop-filter: blur(8px);
-border: 1px solid rgba(139, 92, 246, 0.3);
-border-radius: 8px;
-color: #a78bfa;
-flex-shrink: 0;
-transition: all 0.3s ease;
-${ContactItem}:hover & {
-background: rgba(139, 92, 246, 0.3);
-border-color: rgba(139, 92, 246, 0.5);
-transform: scale(1.1);
-}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(139, 92, 246, 0.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 8px;
+  color: #a78bfa;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+
+  ${ContactItem}:hover & {
+    background: rgba(139, 92, 246, 0.3);
+    border-color: rgba(139, 92, 246, 0.5);
+    transform: scale(1.1);
+  }
 `;
+
 export const ContactText = styled.span`
-font-size: 0.9375rem;
-color: rgba(255, 255, 255, 0.7);
-transition: color 0.3s ease;
-${ContactItem}:hover & {
-color: #ffffff;
-}
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s ease;
+
+  ${ContactItem}:hover & {
+    color: #ffffff;
+  }
 `;
+
 export const FooterBottom = styled.div`
-display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 2rem;
-padding-top: 2rem;
-@media (max-width: 768px) {
-flex-direction: column;
-text-align: center;
-gap: 1.5rem;
-}
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
 `;
+
 export const Copyright = styled.div`
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.6);
@@ -264,22 +260,26 @@ export const Copyright = styled.div`
   flex-direction: column;
   gap: 0.5rem;
 `;
+
 export const MadeWithLove = styled.span`
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
   font-size: 0.8125rem;
   color: rgba(255, 255, 255, 0.5);
+
   svg {
     color: #f87171;
     animation: ${pulse} 2s ease-in-out infinite;
   }
 `;
+
 export const SocialLinks = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
 `;
+
 export const SocialLink = styled.a`
   display: flex;
   align-items: center;
@@ -290,21 +290,29 @@ export const SocialLink = styled.a`
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
-  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+
   &:hover {
     background: rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.3);
-    color: #ffffff;
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+
+    img {
+      opacity: 1;
+    }
   }
+
   &:active {
     transform: translateY(-1px);
-  }
-  svg {
-    width: 20px;
-    height: 20px;
   }
 `;

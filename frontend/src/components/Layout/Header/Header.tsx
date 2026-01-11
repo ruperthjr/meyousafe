@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Menu, X, Shield } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import {
   HeaderContainer,
   HeaderContent,
@@ -52,11 +52,13 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
 
   return (
     <HeaderContainer className={className} $isScrolled={isScrolled}>
-      <HeaderBubbles />
+      <HeaderBubbles>
+        <img src="/assets/images/header-bubbles.svg" alt="" />
+      </HeaderBubbles>
       <HeaderContent>
         <Logo to="/">
           <LogoIcon>
-            <Shield size={28} strokeWidth={2.5} />
+            <img src="/assets/images/logo.svg" alt="MeYouSafe Logo" />
           </LogoIcon>
           <LogoText>MeYouSafe</LogoText>
         </Logo>
