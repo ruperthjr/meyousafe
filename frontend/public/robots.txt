@@ -1,0 +1,13 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Disallow: /report
+Disallow: /refresh
+Disallow: /404
+Disallow: /500
+
+Allow: /
+Allow: /about
+Allow: /faqs
+Allow: /support
+
+Sitemap: https://meyousafe.org/sitemap.xml

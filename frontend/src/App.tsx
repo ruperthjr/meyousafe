@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { ThemeProvider, DefaultTheme } from 'styled-components';
+import { lightTheme } from './styles/theme';
+import GlobalStyles from './styles/global';
+import { FormProvider } from './contexts/FormContext';
+import { Header } from './components/Layout/Header';
+import { Footer } from './components/Layout/Footer';
+import { ErrorBoundary } from './components/Common/ErrorBoundary';
+import { ROUTES } from './constants/routes';
 
-function App() {
-  const [count, setCount] = useState(0)
+import Home from './pages/Home';
+import Report from './pages/Report';
+import About from './pages/About';
+import FAQs from './pages/FAQs';
+import Support from './pages/Support';
+import Refresh from './pages/Refresh';
+import Error404 from './pages/Error404';
+import Error500 from './pages/Error500';
 
+const App: React.FC = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <ErrorBoundary>
+      <ThemeProvider theme={lightTheme as DefaultTheme}>
+        <GlobalStyles />
+        <BrowserRouter>
+          <FormProvider totalSteps={3}>
+            <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+              <Header />
+              <main style={{ flex: 1 }}>
+                <Routes>
+                  <Route path={ROUTES.HOME} element={<Home />} />
+                  <Route path={ROUTES.REPORT} element={<Report />} />
+                  <Route path={ROUTES.ABOUT} element={<About />} />
+                  <Route path={ROUTES.FAQS} element={<FAQs />} />
+                  <Route path={ROUTES.SUPPORT} element={<Support />} />
+                  <Route path={ROUTES.REFRESH} element={<Refresh />} />
+                  <Route path={ROUTES.ERROR_500} element={<Error500 />} />
+                  <Route path={ROUTES.ERROR_404} element={<Error404 />} />
+                  <Route path="*" element={<Navigate to={ROUTES.ERROR_404} replace />} />
+                </Routes>
+              </main>
+              <Footer />
+            </div>
+          </FormProvider>
+        </BrowserRouter>
+      </ThemeProvider>
+    </ErrorBoundary>
+  );
+};
 
-export default App
+export default App;
