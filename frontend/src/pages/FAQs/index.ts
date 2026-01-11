@@ -1,0 +1,1 @@
+export { FAQs as default } from './FAQs';
