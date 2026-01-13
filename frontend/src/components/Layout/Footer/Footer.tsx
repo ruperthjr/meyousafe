@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Heart } from 'lucide-react';
+import { Mail, Phone, MapPin} from 'lucide-react';
 import {
   FooterContainer,
   FooterContent,
@@ -20,7 +20,6 @@ import {
   SocialLinks,
   SocialLink,
   FooterBubbles,
-  MadeWithLove,
 } from './Footer.styles';
 
 interface FooterProps {
@@ -61,20 +60,6 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
           </FooterSection>
 
           <FooterSection>
-            <FooterTitle>Resources</FooterTitle>
-            <FooterLinks>
-              <FooterLink to="/support">Support</FooterLink>
-              <FooterLink to="/refresh">Refresh Response</FooterLink>
-              <FooterLink to="/docs/privacy" target="_blank" rel="noopener noreferrer">
-                Privacy Policy
-              </FooterLink>
-              <FooterLink to="/docs/terms" target="_blank" rel="noopener noreferrer">
-                Terms of Service
-              </FooterLink>
-            </FooterLinks>
-          </FooterSection>
-
-          <FooterSection>
             <FooterTitle>Contact Us</FooterTitle>
             <FooterLinks>
               <ContactItem>
@@ -102,9 +87,6 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
         <FooterBottom>
           <Copyright>
             © {currentYear} MeYouSafe. All rights reserved.
-            <MadeWithLove>
-              Made with <Heart size={14} fill="currentColor" /> for survivors
-            </MadeWithLove>
           </Copyright>
           <SocialLinks>
             <SocialLink
